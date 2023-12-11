@@ -1,49 +1,30 @@
 extends Sprite2D
 
+var snake_texture = preload("res://block.png")
+
+var parent
+var last = true
 var size
-var right_bound
-var down_bound
 
-var direction = RIGHT
+func _init(previous_node):
+	parent = previous_node
+	size = snake_texture.get_height()
+	set_texture(snake_texture)
+	centered = false
+	position = parent.position
+	position.x -= size
 
-enum {LEFT, RIGHT, DOWN, UP}
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
-	size = get_rect().size.x
-	right_bound = get_viewport_rect().size.x
-	down_bound = get_viewport_rect().size.y
-
-func _input(event):
-	if event.is_action_pressed("left"):
-		direction = LEFT
-	if event.is_action_pressed("right"):
-		direction = RIGHT
-	if event.is_action_pressed("down"):
-		direction = DOWN
-	if event.is_action_pressed("up"):
-		direction = UP
+	get_tree().current_scene.grew.connect(grow)
 
 func move():
-	match direction:
-		RIGHT:
-			position.x += size
-			if position.x >= right_bound:
-				position.x = 0
-		LEFT:
-			position.x -= size
-			if position.x < 0:
-				position.x = right_bound - size
-		DOWN:
-			position.y += size
-			if position.y >= down_bound:
-				position.y = 0
-		UP:
-			position.y -= size
-			if position.y < 0:
-				position.y = down_bound - size
+	set_global_position(parent.get_global_position())
 
-
-
-
-
+func grow():
+	if last:
+		var node = load("res://snake.gd").new(self)
+		node.position = position
+		node.position.x -= size
+		add_sibling(node)
+		last = false
