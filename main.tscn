@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://boqvmsxweht50"]
+
+[ext_resource type="Texture2D" uid="uid://clhtuxspbxyjl" path="res://block.png" id="1_kku1r"]
+[ext_resource type="Script" path="res://snake.gd" id="2_l4ina"]
+
+[node name="root" type="Node"]
+
+[node name="background" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.121569, 0.184314, 0.333333, 1)
+
+[node name="head" type="Sprite2D" parent="."]
+modulate = Color(0, 0.721569, 0.0156863, 1)
+position = Vector2(360, 220)
+texture = ExtResource("1_kku1r")
+centered = false
+script = ExtResource("2_l4ina")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.2
+autostart = true
+
+[connection signal="timeout" from="Timer" to="head" method="move"]
