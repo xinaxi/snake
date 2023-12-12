@@ -19,7 +19,7 @@ color = Color(0.121569, 0.184314, 0.333333, 1)
 modulate = Color(0, 0.721569, 0.0156863, 1)
 
 [node name="head" type="Sprite2D" parent="snake"]
-position = Vector2(360, 220)
+position = Vector2(380, 280)
 texture = ExtResource("1_kku1r")
 centered = false
 script = ExtResource("2_lhpjt")
@@ -28,5 +28,39 @@ script = ExtResource("2_lhpjt")
 wait_time = 0.09
 autostart = true
 
+[node name="game over" type="Label" parent="."]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -201.5
+offset_top = -52.5
+offset_right = 201.5
+offset_bottom = 52.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 8
+theme_override_font_sizes/font_size = 74
+text = "Game Over"
+
+[node name="restart" type="Button" parent="."]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -4.0
+offset_top = -4.0
+offset_right = 4.0
+offset_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 76
+text = "restart?"
+
 [connection signal="grew" from="." to="snake/head" method="grow"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="pressed" from="restart" to="." method="_on_restart_pressed"]
