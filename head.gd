@@ -25,15 +25,19 @@ func _input(event):
 
 
 func move():
-	position += direction*size
-	if position.x >= right_bound:
-		position.x = 0
-	elif position.x < 0:
-		position.x = right_bound - size
-	elif position.y >= down_bound:
-		position.y = 0
-	elif position.y < 0:
-		position.y = down_bound - size
+	position = next()
+
+func next():
+	var pos = position + direction*size
+	if pos.x >= right_bound:
+		pos.x = 0
+	elif pos.x < 0:
+		pos.x = right_bound - size
+	elif pos.y >= down_bound:
+		pos.y = 0
+	elif pos.y < 0:
+		pos.y = down_bound - size
+	return pos
 
 
 

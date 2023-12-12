@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://dhsqj242n5fwp"]
+
+[ext_resource type="Script" path="res://level1.gd" id="1_reaun"]
+
+[node name="root" type="Node2D"]
+modulate = Color(0.298039, 0, 0.0392157, 1)
+script = ExtResource("1_reaun")

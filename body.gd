@@ -7,7 +7,6 @@ func _init(previous_node):
 	set_texture(snake_texture)
 	centered = false
 	position = parent.position
-	position.x -= size
 
 
 func _ready():

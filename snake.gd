@@ -8,7 +8,6 @@ var last = true
 func move():
 	pass
 
-
 func grow():
 	if last:
 		var node = load("res://body.gd").new(self)
